@@ -17,7 +17,7 @@
     <link href="<?=BASE_URL?>/css/sb-admin-2.css" rel="stylesheet" />
   </head>
 
-  <body class="bg-primary">
+  <body>
     <div class="container">
       <!-- Outer Row -->
       <div class="row justify-content-center">
@@ -26,8 +26,8 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-4 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-8">
                   <div class="p-5">
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
@@ -50,8 +50,8 @@
                         </div> -->
                       </div>
                       <hr />
-                      <button class="btn btn-primary btn-user btn-block"> Login </button>
-                      <hr />
+                      <button class="btn btn-primary btn-user btn-block">Login Ke Sistem</button>
+                      <p class="mt-2">Saya belum mempunyai akun, <a href="<?= BASE_URL?>/auth/register">Daftar disini</a></p>
                     </form>
                     <!-- <div class="text-center">
                       <a class="small" href="forgot-password.html">Forgot Password?</a>

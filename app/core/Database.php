@@ -24,6 +24,21 @@ class Database
         $this->conn = null;
     }
 
+    public function beginTransaction()
+    {
+        $this->conn->beginTransaction();
+    }
+
+    public function commit()
+    {
+        $this->conn->commit();
+    }
+
+    public function rollback()
+    {
+        $this->conn->rollBack();
+    }
+
     public function query($sql)
     {
         $this->stmt = $this->conn->prepare($sql);    

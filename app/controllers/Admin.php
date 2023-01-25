@@ -5,6 +5,7 @@ class Admin extends Controller
     public function __construct()
     {
         login_required();    
+        staff_only();
     }
 
     protected function render($view, $data = [])
@@ -29,12 +30,12 @@ class Admin extends Controller
             'all_petugas' => $db->query('SELECT * FROM petugas ORDER BY level')->get()
         ];
         
-        $this->render('admin/petugas/index', $data);
+        return $this->render('admin/petugas/index', $data);
     }
 
     public function petugas_create()
     {
-        $this->render('admin/petugas/create');
+        return $this->render('admin/petugas/create');
     }
 
     public function petugas_edit($id_petugas)
@@ -48,7 +49,7 @@ class Admin extends Controller
         $data = [
             'petugas' => $petugas
         ];
-        $this->render('admin/petugas/edit', $data);
+        return $this->render('admin/petugas/edit', $data);
     }
 
     public function petugas_store()
@@ -141,12 +142,12 @@ class Admin extends Controller
             'masyarakat' => $db->query('SELECT * FROM masyarakat')->get() 
         ];
 
-        $this->render('admin/masyarakat/index', $data);
+        return $this->render('admin/masyarakat/index', $data);
     }
 
     public function masyarakat_create()
     {
-        $this->render('admin/masyarakat/create');
+        return $this->render('admin/masyarakat/create');
     }
 
     public function masyarakat_edit($nik)
@@ -160,7 +161,7 @@ class Admin extends Controller
            'masyarakat' => $masyrakat   
         ];
 
-        $this->render('admin/masyarakat/edit', $data);
+        return $this->render('admin/masyarakat/edit', $data);
     }
 
     public function masyarakat_store()
@@ -259,6 +260,19 @@ class Admin extends Controller
         return $this->render('admin/pengaduan/show', $data);
     }
 
+    public function pengaduan_tolak($id) 
+    {
+        $db = new Database;
+
+        $count = $db->query('DELETE FROM pengaduan WHERE id_pengaduan = :id_pengaduan')->bind(':id_pengaduan', $id)->rowCount();
+
+        if ($count > 0) {
+            return successRedirect('admin/pengaduan','berhasil menolak pengaduan');
+        }
+
+        dd('ERROR');
+    }
+
     public function tanggapan($id_pengaduan)
     {
         $db = new Database;
@@ -302,16 +316,6 @@ class Admin extends Controller
 
         $db->conn->commit();
         return successRedirect("admin/pengaduan_show/$id_pengaduan",'Berhasil membuat pengaduan');
-    }
-
-    public function cetak()
-    {
-        $this->render('admin/cetak-laporan/index');
-    }
-
-    public function cetak_pdf()
-    {
-
     }
 
 

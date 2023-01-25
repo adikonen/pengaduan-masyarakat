@@ -88,6 +88,22 @@ function guest_only() {
     }
 }
 
+function staff_only() {
+    $user = getLoginAccount();
+    if (! (isset($user['level']))) {
+        return redirect('home');
+    }
+}
+
+function masyarakat_only() {
+    $user = getLoginAccount();
+
+    if (isset($user['level'])) {
+        return redirect('admin');
+    }
+
+}
+
 function login($data) {
     if (isset($data['password'])) {
         unset($data['password']);
@@ -96,6 +112,21 @@ function login($data) {
     $_SESSION['user'] = $data;
 }
 
-function uploadFile(){}
+function uploadFile($dir, $file){
+    $dir = trim($dir, '/');
+    $dir .= '/';
+
+    if (!empty($file["tmp_name"])) {
+		$fileinfo = PATHINFO($file["name"]);
+		$newFilename = $fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		$location = $dir . $newFilename;
+        move_uploaded_file($file["tmp_name"], $location);
+ 
+		// mysqli_query($con,"insert into image_tb (img_location) values ('$location')");
+        return $location;
+	}
+
+    return null;
+}
 
 function renderStorageUrl(){}

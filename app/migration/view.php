@@ -8,14 +8,14 @@ $pengaduan_masyarakat = "CREATE OR REPLACE VIEW pengaduan_masyarakat AS
 ";
 
 $tanggapan_pengaduan_masyarakat = "CREATE OR REPLACE VIEW tanggapan_pengaduan_masyarakat AS 
-    SELECT tanggapan.*, pengaduan.tgl_pengaduan, pengaduan.status, masyarakat.nama, masyarakat.username
+    SELECT tanggapan.*, pengaduan.tgl_pengaduan, pengaduan.status, masyarakat.nik, masyarakat.nama, masyarakat.username
     FROM tanggapan INNER JOIN pengaduan ON tanggapan.id_pengaduan = pengaduan.id_pengaduan
     INNER JOIN masyarakat ON pengaduan.nik = masyarakat.nik
 ";
 
 $tanggapan_pengaduan_masyarakat_petugas = "CREATE OR REPLACE VIEW tanggapan_pengaduan_masyarakat_petugas AS 
     SELECT tanggapan.*, pengaduan.tgl_pengaduan, pengaduan.status, 
-    masyarakat.nama, masyarakat.username as masyarakat_username, masyarakat.telp, petugas.nama_petugas, petugas.username
+    masyarakat.nama, masyarakat.username as masyarakat_username, masyarakat.nik, masyarakat.telp, petugas.nama_petugas, petugas.username
     FROM tanggapan INNER JOIN pengaduan ON tanggapan.id_pengaduan = pengaduan.id_pengaduan
     INNER JOIN masyarakat ON pengaduan.nik = masyarakat.nik
     INNER JOIN petugas ON tanggapan.id_petugas = petugas.id_petugas

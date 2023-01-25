@@ -2,7 +2,6 @@
 
 class Flasher 
 {
-    public static bool $isError;
 
     public static function set($status, $message) 
     {

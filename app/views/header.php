@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Portal Pengaduan</title>
+    <title><?= e(APP_NAME)?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= BASE_URL?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
